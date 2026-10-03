@@ -1,4 +1,13 @@
-# Skogseid Sonar
+# Skogseidvatnet fishing chart
+
+Printable A3 fishing chart for Skogseidvatnet: `chart/skogseid-kart-A3.pdf`. Print it at A3 (1:20 000) or
+scaled to A4; the scale bar stays correct either way. Laminate it, and use a marker on the catch log.
+Rebuild it with `python tools/build_chart.py` (run `tools/build_data.py` first if the sources change).
+It needs Chromium on PATH.
+
+Background map data © OpenStreetMap contributors (ODbL), from `kilder/osm-skogseid.json`.
+
+## Skogseid Sonar (phone app)
 
 Offline phone app for fishing Skogseidvatnet (NVE 2043, Bjørnafjorden): a depth map, a live depth
 readout under your GPS position, a warning near the fish farm pens, track recording and a catch log.

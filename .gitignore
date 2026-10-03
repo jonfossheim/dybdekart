@@ -5,3 +5,4 @@ __pycache__/
 # Source report (not ours to redistribute) and crops of its figures
 *.pdf
 kilder/*.png
+!chart/*.pdf
