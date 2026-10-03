@@ -1,0 +1,79 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Skogseidvatnet Fishing Chart</title>
+<meta name="description" content="Printable A3 fishing chart for Skogseidvatnet: depth contours, fish farm pens, spots and a catch log.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23f1e8cd'/%3E%3Cpath d='M6 22c5-8 11-12 20-14' stroke='%232f6584' stroke-width='3' fill='none' stroke-linecap='round'/%3E%3Ccircle cx='17' cy='15' r='3.4' fill='%23c2412d'/%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow:wght@400;600&family=Barlow+Condensed:wght@600;700&display=swap">
+<style>
+/* Layout: chart sheet dominates; a slim column says what it is and how to print it. */
+:root{
+  --paper:#f7f4ea; --land:#f1e8cd; --ink:#1f2a30; --muted:#56646b; --water:#2f6584; --red:#c2412d; --on-red:#ffffff; --rule:#d9d2bd;
+  --f-display:"Barlow Condensed","Arial Narrow",sans-serif; --f-body:"Barlow",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){
+  :root{ color-scheme:dark; --paper:#141b1f; --ink:#e7ecee; --muted:#a3b0b6; --water:#8cc3e4; --red:#f0775f; --on-red:#1d0d09; --rule:#2c383f; }
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--paper);color:var(--ink);font:400 16px/1.55 var(--f-body);padding:0 20px}
+.wrap{max-width:1280px;margin:0 auto;padding-block:36px 56px;display:grid;grid-template-columns:minmax(0,1fr) 300px;gap:40px;align-items:start}
+@media (max-width:900px){ .wrap{grid-template-columns:1fr;gap:24px} }
+h1{margin:0;font:700 clamp(34px,5vw,52px)/1 var(--f-display);letter-spacing:.03em;text-transform:uppercase;text-wrap:balance}
+.lede{margin:10px 0 0;color:var(--muted);max-width:60ch}
+.sheet{display:block;border:1px solid var(--rule);box-shadow:0 18px 40px -24px rgba(20,30,35,.45);background:#fff}
+.sheet img{display:block;width:100%;height:auto}
+aside{display:grid;gap:24px;position:sticky;top:24px}
+@media (max-width:900px){ aside{position:static} }
+.dl{display:flex;align-items:center;justify-content:center;gap:10px;height:54px;border-radius:10px;background:var(--red);color:var(--on-red);
+  font:700 19px/1 var(--f-display);letter-spacing:.06em;text-transform:uppercase;text-decoration:none}
+.dl:hover{filter:brightness(1.08)}
+.dl:focus-visible{outline:3px solid var(--water);outline-offset:3px}
+.dl small{font:600 13px var(--f-body);letter-spacing:0;text-transform:none;opacity:.85}
+h2{margin:0 0 8px;font:700 13px/1 var(--f-display);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);padding-bottom:6px;border-bottom:2px solid var(--ink)}
+ul{margin:0;padding-left:18px;display:grid;gap:6px}
+p{margin:0}
+.facts{display:grid;grid-template-columns:auto 1fr;gap:4px 14px;font-variant-numeric:tabular-nums}
+.facts dt{font:600 15px var(--f-display);letter-spacing:.04em;color:var(--water)}
+.facts dd{margin:0}
+.fine{font-size:13px;color:var(--muted)}
+.fine a{color:var(--water)}
+</style>
+</head>
+<body>
+<div class="wrap">
+  <main>
+    <a class="sheet" href="skogseid-kart-A3.pdf" aria-label="Open the chart PDF">
+      <img src="preview.jpg" width="1820" height="1287" alt="A3 fishing chart of Skogseidvatnet: depth shading with 20 m contours, eight numbered fishing spots, fish farm pens with 100 m zones, and a notes column with a catch log.">
+    </a>
+  </main>
+  <aside>
+    <div>
+      <h1>Skogseidvatnet</h1>
+      <p class="lede">A printable fishing chart for the lake in Bjørnafjorden. Print it, laminate it and take it in the boat.</p>
+    </div>
+    <a class="dl" href="skogseid-kart-A3.pdf" download>Download PDF <small>A3 · 0.7 MB</small></a>
+    <div>
+      <h2>Printing</h2>
+      <ul>
+        <li>Print at A3 for 1:20 000.</li>
+        <li>On A4, choose "fit to page". The scale bar stays correct at any size.</li>
+        <li>Laminate it, then write in the catch log with a marker.</li>
+      </ul>
+    </div>
+    <div>
+      <h2>The lake</h2>
+      <dl class="facts">
+        <dt>Area</dt><dd>5.26 km²</dd>
+        <dt>Deepest</dt><dd>115 m on the map, 129 m by sonar</dd>
+        <dt>Mean</dt><dd>44 m</dd>
+        <dt>Fish</dt><dd>Trout, Arctic char, escaped salmon</dd>
+      </dl>
+    </div>
+    <p class="fine">Depths: Skogheim 1983 contours (Rådgivende Biologer report 3892), fitted to NVE's shoreline; 10 m lines are interpolated. Pens: Fiskeridirektoratet. Background map © <a href="https://www.openstreetmap.org/copyright">OpenStreetMap contributors</a>. Check the fishing rules with Hålandsdalen Grunneigarlag on inatur.no before you go. Source: <a href="https://github.com/jonfossheim/dybdekart">github.com/jonfossheim/dybdekart</a>.</p>
+  </aside>
+</div>
+</body>
+</html>

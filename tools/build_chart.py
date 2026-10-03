@@ -407,6 +407,8 @@ def main():
     subprocess.run(["chromium", "--headless=new", "--disable-gpu", "--no-pdf-header-footer", "--virtual-time-budget=8000",
                     f"--print-to-pdf={pdf}", (OUT / "skogseid-kart.html").as_uri()], check=True, capture_output=True)
     print("wrote", pdf.relative_to(ROOT), f"{pdf.stat().st_size / 1e6:.1f} MB")
+    subprocess.run(["pdftoppm", "-r", "110", "-jpeg", "-jpegopt", "quality=85", "-singlefile", str(pdf), str(OUT / "preview")], check=True)
+    print("wrote", (OUT / "preview.jpg").relative_to(ROOT))
 
 
 TEMPLATE = """<!doctype html>

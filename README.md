@@ -3,7 +3,10 @@
 Printable A3 fishing chart for Skogseidvatnet: `chart/skogseid-kart-A3.pdf`. Print it at A3 (1:20 000) or
 scaled to A4; the scale bar stays correct either way. Laminate it, and use a marker on the catch log.
 Rebuild it with `python tools/build_chart.py` (run `tools/build_data.py` first if the sources change).
-It needs Chromium on PATH.
+It needs Chromium and pdftoppm on PATH.
+
+The chart is published at https://jonfossheim.github.io/dybdekart/ (`site/` plus the PDF and preview, deployed by
+`.github/workflows/pages.yml`).
 
 Background map data © OpenStreetMap contributors (ODbL), from `kilder/osm-skogseid.json`.
 
@@ -14,8 +17,8 @@ readout under your GPS position, a warning near the fish farm pens, track record
 
 ## Use it
 
-The app is a static site in `app/`. GPS only works over **https** (or on `localhost`), so it has to be
-hosted somewhere like GitHub Pages before it works on a phone. Open it once with a connection,
+The app is a static site in `app/`. It is no longer deployed; the Pages site serves the chart instead.
+GPS only works over **https** (or on `localhost`), so it has to be hosted before it works on a phone. Open it once with a connection,
 then use "Add to Home Screen". After that it works with no signal.
 
 Try it on a computer:

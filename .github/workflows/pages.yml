@@ -1,9 +1,9 @@
-name: Deploy app to GitHub Pages
+name: Deploy chart to GitHub Pages
 
 on:
   push:
     branches: [main]
-    paths: ['app/**', '.github/workflows/pages.yml']
+    paths: ['site/**', 'chart/skogseid-kart-A3.pdf', 'chart/preview.jpg', '.github/workflows/pages.yml']
   workflow_dispatch:
 
 permissions:
@@ -23,9 +23,14 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      - name: Assemble site
+        run: |
+          mkdir -p _site
+          cp site/* _site/
+          cp chart/skogseid-kart-A3.pdf chart/preview.jpg _site/
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:
-          path: app
+          path: _site
       - id: deployment
         uses: actions/deploy-pages@v4
