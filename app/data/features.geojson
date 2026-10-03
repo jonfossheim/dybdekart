@@ -1,0 +1,176 @@
+{
+ "type": "FeatureCollection",
+ "features": [
+  {
+   "type": "Feature",
+   "properties": {
+    "kind": "shore_site",
+    "name": "Utlebøen",
+    "siteNr": 10145,
+    "source": "Fiskeridirektoratet"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     5.873078,
+     60.226185
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "kind": "shore_site",
+    "name": "Eidestø",
+    "siteNr": 12041,
+    "source": "Fiskeridirektoratet"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     5.873583,
+     60.2265
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "kind": "pen",
+    "name": "Skogseidvatnet",
+    "siteNr": 12042,
+    "source": "Fiskeridirektoratet"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     5.873171,
+     60.201884
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "kind": "pen",
+    "name": "Ospenes",
+    "siteNr": 12096,
+    "source": "Fiskeridirektoratet"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     5.894117,
+     60.222633
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "kind": "pen",
+    "name": "Skogseidvatnet II",
+    "siteNr": 27956,
+    "source": "Fiskeridirektoratet"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     5.87545,
+     60.226217
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "kind": "pen",
+    "name": "Skogseidvatnet III",
+    "siteNr": 28796,
+    "source": "Fiskeridirektoratet"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     5.876767,
+     60.2277
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "kind": "inflow",
+    "name": "Inflow (north shore)",
+    "source": "Skogheim 1983"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     5.871923,
+     60.225627
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "kind": "inflow",
+    "name": "Inflow (northeast arm)",
+    "source": "Skogheim 1983"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     5.918398,
+     60.245665
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "kind": "outlet",
+    "name": "Outlet to Henangervatnet",
+    "source": "Skogheim 1983"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     5.839824,
+     60.211967
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "kind": "hump",
+    "name": "Underwater hill: top ~52 m, bottom around it ~83 m",
+    "source": "Skogheim 1983"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     5.878523,
+     60.221104
+    ]
+   }
+  },
+  {
+   "type": "Feature",
+   "properties": {
+    "kind": "deep",
+    "name": "Deepest on 1983 map (~115 m; NIVA sonar found 129 m)",
+    "source": "Skogheim 1983"
+   },
+   "geometry": {
+    "type": "Point",
+    "coordinates": [
+     5.859987,
+     60.21649
+    ]
+   }
+  }
+ ]
+}

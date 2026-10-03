@@ -1,0 +1,7 @@
+__pycache__/
+.venv/
+*.pyc
+
+# Source report (not ours to redistribute) and crops of its figures
+*.pdf
+kilder/*.png

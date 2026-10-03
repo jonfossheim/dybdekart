@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#061016">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<title>Skogseid Sonar</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icon-192.png">
+<link rel="stylesheet" href="vendor/leaflet/leaflet.css">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="map" aria-label="Depth map of Skogseidvatnet"></div>
+
+<header class="hud" id="hud">
+  <div class="readout">
+    <div class="depth" id="depth"><span id="depthVal">--</span><small>m</small></div>
+    <div class="depth-note" id="depthNote">Waiting for position</div>
+  </div>
+  <dl class="meta">
+    <div><dt>Band</dt><dd id="band">--</dd></div>
+    <div><dt>Speed</dt><dd id="speed">--</dd></div>
+    <div><dt>Course</dt><dd id="course">--</dd></div>
+    <div><dt>GPS</dt><dd id="gps">--</dd></div>
+  </dl>
+</header>
+
+<div class="alert" id="penAlert" hidden></div>
+<div class="banner" id="banner" hidden></div>
+
+<button class="fab" id="follow" type="button" aria-pressed="true" title="Follow my position">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.2"/><path d="M12 2v4M12 18v4M2 12h4M18 12h4" /><circle cx="12" cy="12" r="7.5" fill="none"/></svg>
+</button>
+
+<nav class="bar">
+  <button type="button" id="btnLayers">Layers</button>
+  <button type="button" id="btnTrack" aria-pressed="false">Track</button>
+  <button type="button" id="btnLog" class="go">Log catch</button>
+</nav>
+
+<!-- Layers sheet -->
+<section class="sheet" id="sheetLayers" hidden aria-label="Layers">
+  <div class="sheet-head"><h2>Layers</h2><button type="button" class="x" data-close>Close</button></div>
+  <div class="toggles">
+    <label><input type="checkbox" id="lyrShade" checked> Depth shading</label>
+    <label><input type="checkbox" id="lyrContours" checked> Contours (10 m)</label>
+    <label><input type="checkbox" id="lyrPens" checked> Fish farm pens + 100 m zone</label>
+    <label><input type="checkbox" id="lyrSpots" checked> Inflows, outlet, hill, deepest</label>
+    <label><input type="checkbox" id="lyrCatches" checked> Catches</label>
+    <label><input type="checkbox" id="lyrTrack" checked> Track</label>
+  </div>
+  <div class="legend">
+    <div class="ramp" id="ramp"></div>
+    <div class="ramp-scale"><span>0</span><span>20</span><span>40</span><span>60</span><span>80</span><span>100+ m</span></div>
+  </div>
+  <div class="toggles">
+    <label><input type="checkbox" id="testMode"> Test mode: tap the map to move the boat</label>
+  </div>
+  <p class="fine">Depths come from a 1983 map with 20 m contours, aligned to NVE's shoreline. The 10 m lines and the depth readout are interpolated between contours. A 1994 sonar survey found 129 m; the old map stops at 115 m. Pen positions are the registered site points from Fiskeridirektoratet, so the pens themselves may sit a little off them.</p>
+</section>
+
+<!-- Catch log form -->
+<section class="sheet" id="sheetCatch" hidden aria-label="Log catch">
+  <div class="sheet-head"><h2>Log catch</h2><button type="button" class="x" data-close>Cancel</button></div>
+  <form id="catchForm" autocomplete="off">
+    <fieldset class="chips" id="species">
+      <legend>Species</legend>
+      <label><input type="radio" name="species" value="Char" checked><span>Char</span></label>
+      <label><input type="radio" name="species" value="Trout"><span>Trout</span></label>
+      <label><input type="radio" name="species" value="Salmon"><span>Salmon</span></label>
+      <label><input type="radio" name="species" value="Other"><span>Other</span></label>
+    </fieldset>
+    <div class="row">
+      <label>Weight (kg)<input id="fWeight" name="weight" type="number" inputmode="decimal" step="0.01" min="0"></label>
+      <label>Length (cm)<input id="fLength" name="length" type="number" inputmode="decimal" step="0.5" min="0"></label>
+      <label>Depth (m)<input id="fDepth" name="depth" type="number" inputmode="decimal" step="1" min="0"></label>
+    </div>
+    <label>Lure / bait<input id="fLure" name="lure" type="text" list="lures" placeholder="e.g. Dividal spoon, UV"></label>
+    <datalist id="lures"></datalist>
+    <label>Note<input id="fNote" name="note" type="text" placeholder="Released, kept, weather…"></label>
+    <p class="fine" id="fWhere">Position: --</p>
+    <button type="submit" class="go wide">Save catch</button>
+  </form>
+</section>
+
+<!-- Track + catch list -->
+<section class="sheet" id="sheetTrack" hidden aria-label="Track and catches">
+  <div class="sheet-head"><h2>Trip</h2><button type="button" class="x" data-close>Close</button></div>
+  <div class="trackrow">
+    <div><b id="trackDist">0.00</b><span>km tracked</span></div>
+    <div><b id="trackPts">0</b><span>points</span></div>
+    <div><b id="catchCount">0</b><span>catches</span></div>
+  </div>
+  <div class="actions">
+    <button type="button" id="trackToggle" class="go">Start tracking</button>
+    <button type="button" id="trackClear">Clear track</button>
+  </div>
+  <ol class="catches" id="catchList"></ol>
+  <div class="actions">
+    <button type="button" id="exportGpx">Export GPX</button>
+    <button type="button" id="exportCsv">Export CSV</button>
+  </div>
+  <p class="fine">Everything is stored on this phone only. Export after each trip to keep a copy or share with the group.</p>
+</section>
+
+<div class="toast" id="toast" role="status" hidden></div>
+
+<script src="vendor/leaflet/leaflet.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

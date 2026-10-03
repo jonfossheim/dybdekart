@@ -1,0 +1,11 @@
+{
+ "west": 5.838512664450615,
+ "south": 60.20028372560452,
+ "east": 5.921156022617605,
+ "north": 60.24623994054934,
+ "width": 914,
+ "height": 1016,
+ "cell_m": 5.0,
+ "land": 255,
+ "source": "Skogheim 1983 (20 m contours) via R\u00e5dgivende Biologer rapport 3892; warped to NVE shoreline 2043; depths between contours are interpolated."
+}
